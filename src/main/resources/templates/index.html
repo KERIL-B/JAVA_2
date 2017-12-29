@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Phone Book</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="page-footer">
+
+<nav>
+    <div class="nav-wrapper">
+        <h1 class="right-align">Phone Book</h1>
+    </div>
+</nav>
+<div class="my-page">
+    <h4> Companies</h4>
+    <table class="highlight">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody id="compTable">
+        <tr th:each="company : ${companies}">
+            <td class="compName" th:utext="${company.name}">...</td>
+            <td th:utext="${company.phone}">...</td>
+        </tr>
+        </tbody>
+    </table>
+    <p/>
+    <a id="addButton" th:href="@{/addCompany.html}"
+       class="btn-floating btn-small waves-effect waves-light orange darken-3"><i class="material-icons">add</i></a>
+</div>
+
+
+<!-- Check if errorMessage is not null and not empty -->
+
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#compTable').on('click', 'tr', function () {
+            var name = $(this).find('.compName').html();
+            var url = "/companyProfile?name=" + name;
+            $(location).attr('href', url);
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>

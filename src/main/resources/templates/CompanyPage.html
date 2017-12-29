@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Phone Book</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="page-footer">
+
+<nav>
+    <div class="nav-wrapper">
+        <h1 class="right-align">Phone Book</h1>
+    </div>
+</nav>
+<div class="my-page">
+    <h2>Company</h2>
+    <div class="row">
+        <div class="col s3">
+            <i class="medium material-icons">account_circle</i>
+        </div>
+        <div class="col s7">
+            <h1 th:text=" ${company.name}">...</h1>
+        </div>
+    </div>
+    <h3>Phone</h3>
+    <div class="row">
+        <div class="col s3">
+            <i class="medium material-icons">phone</i>
+        </div>
+        <div class="col s7">
+            <h1 th:text=" ${company.phone}">...</h1>
+        </div>
+    </div>
+    <h3>Employees</h3>
+    <table class="highlight">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:utext="${employee.name}">...</td>
+            <td th:utext="${employee.phone1}">...</td>
+            <td th:utext="${employee.phone2}">...</td>
+            <td th:utext="${employee.phone3}">...</td>
+        </tr>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+
+</body>
+</html>
